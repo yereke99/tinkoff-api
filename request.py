@@ -8,8 +8,8 @@ class Request:
         self.init_url = 'https://securepay.tinkoff.ru/v2/Init'
         self.charge_method_url_test = 'https://rest-api-test.tinkoff.ru/v2/Charge'
         self.notification_url = 'https://675e-91-185-30-130.ngrok.io/ok',
-        self.demo_terminal_key = '1637858682527DEMO'
-        self.original_terminal_key = '1637858682527'
+        self.demo_terminal_key = ''
+        self.original_terminal_key = ''
         self.hosting_ip = '172.20.20.210'
         self.tinkoff_token = 't.xsGwdXivDu401boUYhJ8uBn-HT4bitt1Q4FyvWDflH2hZ6QhM38w8BF3dGAV9utOdPC1KPlPBYETQFq7vmrgfw'
         self.telegram_token = '2053903302:AAE219aCcuwIe9_nPAVZjv0krUyRxQ4huDA'
@@ -32,8 +32,8 @@ class Request:
     
     def AddCustomer(self, url: str, nick: str) -> dict:
         template = {
-            "TerminalKey": "1637858682527DEMO",
-            "Password": "zch86szfax3s7hml",
+            "TerminalKey": "",
+            "Password": "",
             "CustomerKey": nick
         }
         sorted_dict = dict(sorted(template.items(), key=lambda x: x[0].lower()))
@@ -45,7 +45,7 @@ class Request:
         
         token = self.hash(res)
         data = {
-            "TerminalKey": "1637858682527DEMO",
+            "TerminalKey": "",
 	        "CustomerKey": nick,
             "Token": token
         }
@@ -59,7 +59,7 @@ class Request:
     def AddCard(self, url: str, nick: str) -> dict:
         template = {
             "TerminalKey": "1637858682527DEMO",
-            "Password": "zch86szfax3s7hml",
+            "Password": "",
             "CheckType": "HOLD",
             "CustomerKey": nick
         }
@@ -73,7 +73,7 @@ class Request:
         token = self.hash(res)
 
         data = {
-            "TerminalKey": "1637858682527DEMO",
+            "TerminalKey": "",
          	"CustomerKey": nick,
 	        "CheckType": "HOLD",
 	        "Token": token
@@ -86,8 +86,8 @@ class Request:
 
     def GetCardState(self, url: str, request_key: str) -> dict:
         template = {
-            "TerminalKey": "1637858682527DEMO",
-            "Password": "zch86szfax3s7hml",
+            "TerminalKey": "",
+            "Password": "",
             "RequestKey": request_key
         }    
 
@@ -100,7 +100,7 @@ class Request:
         
         token = self.hash(res)
         data = {
-            "TerminalKey": "1637858682527DEMO",
+            "TerminalKey": "",
             "RequestKey": request_key,
 	        "Token": token
         }    
@@ -112,7 +112,7 @@ class Request:
     def Init(self, url: str, customerKey: str, recurrent: bool) -> dict:
         if recurrent == True:
             data = {
-             "TerminalKey":"1637858682527DEMO",
+             "TerminalKey":"",
              "Amount":"299000",
 	         "OrderId": self.random_id(),
              "Recurrent": "Y",
@@ -139,7 +139,7 @@ class Request:
     def charge_method(self, payment_id: Integer, rebill_id: Integer):
         template = {
             "TerminalKey": "1637858682527DEMO",
-            "Password": "zch86szfax3s7hml",
+            "Password": "",
             "PaymentId": str(payment_id),
 	        "RebillId": str(rebill_id),
         }
@@ -165,7 +165,7 @@ class Request:
     def get_state(self, payment_id: Integer):
         template = {
             "TerminalKey": "1637858682527DEMO",
-            "Password": "zch86szfax3s7hml",
+            "Password": "",
             "PaymentId": str(payment_id)
         }
         sorted_dict = dict(sorted(template.items(), key=lambda x: x[0].lower()))
